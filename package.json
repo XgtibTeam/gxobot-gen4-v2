@@ -11,7 +11,7 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "pm2 link y4pxv826e093xe3 zvfvrzuxqy5u4bl && pm2 start server.js && pm2 save && pm2 logspm2 link y4pxv826e093xe3 zvfvrzuxqy5u4bl && pm2 start haruka.js && pm2 save && pm2 logs",
+    "start": "pm2 link y4pxv826e093xe3 zvfvrzuxqy5u4bl && pm2 start server.js && pm2 save && pm2 logs",
     "test2": "node server.cjs"
   },
   "keywords": [
