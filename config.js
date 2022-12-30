@@ -93,15 +93,15 @@ global.thumbWarn = 'https://i.ibb.co/wQyLDLx/kaze.jpg'
 global.intro = 'https://i.ibb.co/PxSxQhd/20221103-171638.jpg'
 /*============== GLOBAL BIO ==============*/
 global.nameowner = `${global.nameown}`
-global.umurowner = '18'
+global.umurowner = '15'
 global.asalowner = 'Isekai'
-global.nomorowner = 'wa.me/6282217590187'
-global.pacarowner = 'Kinako chan><'
+global.nomorowner = 'wa.me/6285654001274'
+global.pacarowner = 'Tsukasa Chan ><'
 
 /*============== TEXT ==============*/
 global.wait = '_In progress, please wait..._'
 global.eror = '```GAGAL```'
-global.cptnya = `_Nih kak_\n\nJangan lupa mampir di channel *KAZEDEVID*`
+global.cptnya = `_Nih kak_\n\n follow ig tekan link ini: www.instagram.com/xgtib`
 global.botintro = `Hai👋 Saya Adalah Bot WhatsApp Yang Bernama ${global.namebot}, Saya di buat oleh ${global.nameown} yang menggunakan bahasa nodejs`
 global.anticall = `kamu Di blockir oleh ${global.namebot} karena telah melanggar aturan ${global.namebot}\n\n*📮Dilarang menelepon ${global.namebot}!*`
 global.antiasing = ` See You Next Time `
