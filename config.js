@@ -34,7 +34,7 @@ global.swa = 'wa.me/6285654001274'
 global.stg = 't.me/XgtibXcyb'
 global.swb = 'https://s.id/XgtibX'
 global.snh = 'https://nhentai.net/g/365296/' //Make ini aja gausah di ganti.
-global.ultahown = 'Maret 23 2023 00:00:01'
+global.ultahown = 'Mei 23 2023 00:00:01'
 
 /*============== PAYMENT ==============*/
 global.pdana = '085654001274'
