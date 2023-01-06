@@ -15,8 +15,7 @@ let handler = async(m, { conn, usedPrefix, text, participants }) => {
     user.lastlimit = new Date * 1
 }
 handler.help = ['tagall <message>']
-handler.tags = ['group','admin']
-handler.register = true 
+handler.tags = ['group']
 handler.command = /^(tagall|all)$/i
 
 handler.group = true
