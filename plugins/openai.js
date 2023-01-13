@@ -1,26 +1,22 @@
-import fetch from 'node-fetch'
-
-let handler = async (m, { conn, command, args, usedPrefix, text }) => {
-    if (!args[0]){ m.reply( 'Masukan teks')
-    return false
-}
-try{
-let res = await (await fetch(`https://malesin.xyz/ai?text=${text}&apikey=DonasiDong`)).json()
-await conn.reply(m.chat, `*CHAT OPENAI*\n\n${res.message}`)
-}catch(e) {
-m.reply('eror!')
-}
-
-/*let handler = async (m, { conn, command, args, usedPrefix, text }) => {
-    if (!args[0]) return false
-    let res = await (await fetch(`http://tools-amfcode.com/api/ai/bot.php?text=${text}`)).json()
-    await conn.reply(m.chat, `*CHAT OPENAI*${res.text}`, m)
-}*/
-handler.help = ['ai']
-handler.tags = ['tools']
-
+import { Configuration, OpenAIApi } from "openai";
+let handler = async (m, { conn, text }) => {
+if (!text) throw "[!] Masukkan teks."
+const configuration = new Configuration({
+    apiKey: "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"
+});
+const openai = new OpenAIApi(configuration);
+        const response = await openai.createCompletion({
+            model: "text-davinci-003",
+            prompt: text,
+            temperature: 0,
+            max_tokens: 3000,
+            top_p: 1,
+            frequency_penalty: 0.5,
+            presence_penalty: 0
+        });
+            m.reply(response.data.choices[0].text)
+    }
+handler.help = ['ai', 'openai']
+handler.tags = ['info', 'fun']
 handler.command = /^ai$/i
-handler.limit = true
-handler.group = false
-
 export default handler
