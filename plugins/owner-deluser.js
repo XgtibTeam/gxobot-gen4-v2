@@ -33,13 +33,17 @@ let handler = async (m, { conn, usedPrefix, command, text }) => {
 	delete global.db.data.users[user]
         let pp = await conn.profilePictureUrl(number+'@s.whatsapp.net', 'image').catch((_) => "https://telegra.ph/file/24fa902ead26340f3df2c.png")
         let anu = `☑️ Berhasil menghapus *${conn.getName(number + '@s.whatsapp.net')}* dari *DATABASE*`
- 	conn.sendHydrated(m.chat, anu, wm, pp, null,null, number, '🌹 BYE USERS', [[null,null],[null,null],[null,null]], m, {mentions: [number+'@s.whatsapp.net']})
-  }
+ 	// conn.sendHydrated(m.chat, anu, wm, pp, null,null, number, '🌹 BYE USERS', [[null,null],[null,null],[null,null]], m, {mentions: [number+'@s.whatsapp.net']})
+	 conn.sendButton(m.chat, anu, wm, pp, [
+		['Sewa Bot', `${usedPrefix}sewa`],
+		['Menu', `${usedPrefix}menu`]
+	], m)
+}
 }
 handler.help = ['deleteuser']
 handler.tags = ['owner']
 handler.command = /^(d(el)?(ete)?u(ser)?|ha?pu?su(ser)?)$/i
 
-handler.rowner = true
+handler.owner = true
 
 export default handler

@@ -1,41 +1,64 @@
-let handler = async (m, { text, conn, usedPrefix, command }) => {
-	let why = `*Contoh:*\n${usedPrefix + command} @${m.sender.split("@")[0]}`
-	let who = m.mentionedJid[0] ? m.mentionedJid[0] : m.quoted ? m.quoted.sender : text ? text.replace(/[^0-9]/g, '') + '@s.whatsapp.net' : false
-	if (!who) conn.reply(m.chat, why, m, { mentions: [m.sender] })
-	let res = [];
-	console.log(command)
-	switch (command) {
-		case "blok":
-		case "block":
-			if (who) await conn.updateBlockStatus(who, "block").then(() => {
-				res.push(who);
-			})
-			else conn.reply(m.chat, why, m, { mentions: [m.sender] })
-		break
-        case "unblok":
-        case "unblock":
-        	if (who) await conn.updateBlockStatus(who, "unblock").then(() => {
-				res.push(who);
-			})
-			else conn.reply(m.chat, why, m, { mentions: [m.sender] })
-        break
-	}
-	if (res[0]) conn.reply(m.chat, `\n   Sukses ${command} ${res ? `${res.map(v => '@' + v.split("@")[0])}` : ''}`, m, { mentions: res })
+/*let handler = async (m, { conn }) => {
+
+ let who
+ if (m.isGroup) who = m.mentionedJid[0]
+ else who = m.chat
+ if (!who) throw 'Tag Orang yang mau diblock!'
+ let user = `${who.split("@s.whatsapp.net")[0]}` + '@c.us'
+    await conn.blockUser(user, 'add')
+  conn.reply(m.chat, `Done!`, m)
 }
-handler.help = ["block", "unblock"]
-handler.tags = ["owner"]
-handler.command = /^(block|unblock)$/i
+handler.help = ['block <@user>']
+handler.tags = ['owner']
+handler.command = /^block$/i
+handler.owner = true
+
+module.exports = handler*/
+
+let handler = async (m, { conn, text, usedPrefix }) => {
+	function no(number){
+    return number.replace(/\s/g,'').replace(/([@+-])/g,'')
+  }
+
+	text = no(text)
+
+  if(isNaN(text)) {
+		var number = text.split`@`[1]
+  } else if(!isNaN(text)) {
+		var number = text
+  }
+
+  if(!text && !m.quoted) return conn.reply(m.chat, `*❏ BLOCK NUMBER*\n\n• \`\`\`\Tag user:\`\`\`\ *${usedPrefix}block @Tag*\n• \`\`\`\Type Number:\`\`\`\ *${usedPrefix}block 6289654360447*\n• \`\`\`\Block User:\`\`\`\ *(Reply Your User)*`, m)
+    if(isNaN(number)) return conn.reply(m.chat, `*❏ BLOCK NUMBER*\n\n• \`\`\`\Tag user:\`\`\`\ *${usedPrefix}block @Tag*\n• \`\`\`\Type Number:\`\`\`\ *${usedPrefix}block 6289654360447*\n• \`\`\`\Block User:\`\`\`\ *(Reply Your User)*`, m)
+    if(number.length > 15) return conn.reply(m.chat, `*❏ BLOCK NUMBER*\n\n• \`\`\`\Tag user:\`\`\`\ *${usedPrefix}block @Tag*\n• \`\`\`\Type Number:\`\`\`\ *${usedPrefix}block 6289654360447*\n• \`\`\`\Block User:\`\`\`\ *(Reply Your User)*`, m) 
+  try {
+		if(text) {
+			var user = number + '@s.whatsapp.net'
+		} else if(m.quoted.sender) {
+			var user = m.quoted.sender
+		} else if(m.mentionedJid) {
+  		  var user = number + '@s.whatsapp.net'
+			}  
+		} catch (e) {
+  } finally {
+  
+	let groupMetadata = m.isGroup ? await conn.groupMetadata(m.chat) : {}
+  let participants = m.isGroup ? groupMetadata.participants : []
+	let users = m.isGroup ? participants.find(u => u.jid == user) : {}
+	let number = user.split('@')[0]
+  
+	await conn.updateBlockStatus(user, "block")
+ 	
+ 	conn.reply(m.chat, `Berhasil memblockir @${number}`, null, {contextInfo: {
+    mentionedJid: [user]
+ 	}})
+
+ 
+ }
+}
+handler.help = ['block <@user>']
+handler.tags = ['owner']
+handler.command = /^block$/i
 handler.owner = true
 
 export default handler
-
-
-
-/*
-
-Jangan dihapus
-
-Buatan FokusDotId (Fokus ID)
-https://github.com/fokusdotid
-
-*/
