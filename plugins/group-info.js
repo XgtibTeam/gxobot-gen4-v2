@@ -35,8 +35,7 @@ Demote: ${sDemote}
 handler.help = ['infogrup']
 handler.tags = ['group']
 handler.command = /^(gro?upinfo|info(gro?up|gc))$/i
-handler.tags = ['group','admin']
-handler.register = true 
+
 handler.group = true
 
 export default handler

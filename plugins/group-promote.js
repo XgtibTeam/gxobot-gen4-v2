@@ -11,8 +11,7 @@ let handler = async (m, { conn, participants }) => {
 
 }
 handler.help = ['promote @tag']
-handler.tags = ['group','admin']
-handler.register = true 
+handler.tags = ['group']
 handler.command = /^(promote)$/i
 
 handler.admin = true

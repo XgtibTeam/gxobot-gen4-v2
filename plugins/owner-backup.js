@@ -9,7 +9,7 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
   message: {
   documentMessage: {
   title: '𝙳 𝙰 𝚃 𝙰 𝙱 𝙰 𝚂 𝙴', 
-  jpegThumbnail: await (await fetch(`https://i.ibb.co/M5zdTWt/20221025-115823.jpg`)).buffer(),
+  jpegThumbnail: fs.readFileSync('./thumbnail.jpg'),
                             }
                           }
                         }
@@ -20,8 +20,8 @@ let handler = async (m, { conn, usedPrefix: _p, args, command }) => {
                 year: 'numeric'
             })
 conn.reply(m.chat, '*Succes*', m)
-conn.reply(nomorown + '@s.whatsapp.net', `*🗓️ Database:* ${date}`, null)
-          conn.sendFile(nomorown + '@s.whatsapp.net', fs.readFileSync('./lib/database.js'), 'database.js', '', 0, 0, { mimetype: 'application/json', quoted: fdoc})
+conn.reply('6282127487538' + '@s.whatsapp.net', `*🗓️ Database:* ${date}`, null)
+          conn.sendFile('6282127487538' + '@s.whatsapp.net', fs.readFileSync('./index.js_database.json'), 'index.js_database.json', '', 0, 0, { mimetype: 'application/json', quoted: fdoc})
  }
  
  handler.help = ['backup']

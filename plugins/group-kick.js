@@ -8,16 +8,14 @@ let handler = async (m, { conn, participants }) => {
             kickedUser.concat(res)
             await delay(1 * 1000)
         }
-    m.reply(`Telah Mengeluarkan Beban  ${kickedUser.map(v => '@' + v.split('@')[0])}`, null, { mentions: kickedUser })
+    m.reply(`Succes kick ${kickedUser.map(v => '@' + v.split('@')[0])}`, null, { mentions: kickedUser })
 
 }
-handler.help = ['kick', '-'].map(v => 'a' + v + ' @user')
-handler.tags = ['group','admin']
-handler.register = true 
-handler.command = /^(kick|akick)$/i
-
+handler.help = ['kick'].map(v => v + ' @user')
+handler.tags = ['group']
+handler.command = /^(kick)$/i
+handler.owner = true
 handler.admin = true
-handler.owner = false
 handler.group = true
 handler.botAdmin = true
 
